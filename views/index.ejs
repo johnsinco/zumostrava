@@ -1,13 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <head>
+        <title><%= title %></title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script src="/javascripts/angularApp.js"></script>
+    </head>
+    <body ng-app='zumoApp'>
+        <header class="hero-unit" id="banner">
+            <div class="container">
+                <h1>ZUMO</h1>
+                <p class="lead">Celebrating the best of Strava doping</p>
+                <img src="/images/rocket.jpg" alt="I'm Yeoman">
+            </div>
+        </header>
+        <div class="container" ng-controller="HomeController">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="">Sketchy KOMs</h3>
+                    <div class="col-md-12 col-lg-12 col-sm-12" ng-repeat="segment in segments">
+                        <div class="col-lg-3">
+                            <img ng-repeat="i in getNumber(segment.dopeRank) track by $index" src="/images/syringe_icon.svg" class="pull-left" />
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="#" tooltip="{{segment.name}}">{{segment.name}}</a>
+                        </div>
+                        <div class="col-lg-3">
+                            <a href="#" tooltip="{{segment.leader.athlete_name}}">{{segment.leader.athlete_name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <p>
+                <a href="https://twitter.com/johnsinco">@johnsinco</a> |
+                <a href="http://www.strava.com/athletes/1658783">Strava</a>
+                </p>
+            </div>
+        </footer>
+    </body>
 </html>
